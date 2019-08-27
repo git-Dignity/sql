@@ -36,7 +36,7 @@
 	如：`system/root123 @orcl as sysdba；` orcl就是自己设置的服务名，如果不是连别人的oracle，这里的@server就是写自己的@ip，
 	如果oracle安装在本机，还可以省略@orcl，最终 `connect sys/root123 as sysdba;`
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/3.%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95.png"  height="330" width="695">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/3.%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95.png"  height="330" width="695"> 
 	</div>
 
 	+ 使用sys用户登录，和system一样，sys一定要用sysdba登录，connect换用户登录
