@@ -11,7 +11,11 @@
 	> <https://blog.csdn.net/wskzgz/article/details/88710263> -->
 	
 	+ 默认sys、system这两个账号不会被锁定
-	+ UTF-8编码：一个英文字符等于一个字节，一个中文（含繁体）等于三个字节。变长
+	+ 可以在浏览器上登录oracle
+	![Image text](https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png)
+====================
+	<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
+	
 	+ Gbk就是放中文：中文两个字节，其他一个字节
 	+ Unicode，就什么都是两个字符，你好IT’ 四个字符占八个字节
 	+ utf8一个汉字占3个字节，占一个字符；Gbk，就两个
