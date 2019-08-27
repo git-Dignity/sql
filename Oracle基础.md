@@ -10,12 +10,19 @@
 	+ 默认sys、system这两个账号不会被锁定，其他都会被锁定
 	+ 可以在浏览器上登录oracle，localhost:1158/em/console/logon/logon，sys/root123/sysdba
     + <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="695">
 	</div>
 	
-	+ Oracle的***卸载***可以在db_home文件夹下找到deinstall文件，里面有个bat的批处理卸载文件，一路点击回车即可完成删除。
+	+ Oracle的***卸载***可以在db_home文件夹下找到deinstall文件，里面有个bat的批处理卸载文件（使用管理员权限），一路点击回车即可完成删除。
+	+ ---oracle删除
+	```app\Administrator\product\11.2.0\dbhome_1\deinstall.bat
+
+	指定要取消配置的所有单实例监听程序 【LISTENER】: Enter
+	指定在此Oracle主目录中配置的数据库名的列表【ORCL】：Enter
+	是否仍要修改ORCL数据库的详细资料？【n】：y
+	```
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/2.%E5%88%A0%E9%99%A4oracle.png"  height="330" width="495">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/2.%E5%88%A0%E9%99%A4oracle.png"  height="330" width="695">
 	</div>
 
 * 系统用户:
@@ -31,10 +38,11 @@
 	+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/3.%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95.png"  height="330" width="695">
 	</div>
+
 	+ 使用sys用户登录，和system一样，sys一定要用sysdba登录，connect换用户登录
 
 	+ `show user`（***显示当前登录的用户***）
-	+ oracle里面有很多数字字典表（其实就是一张表），比如今天的第一张字典表 - dba_users
+	+ oracle里面有很多数字字典表（其实就是一张表），比如今天的第一张字典表 - ***dba_users***
 	+ ***desc***命令查看表的结构字段
 	+ `desc dba_users; `查看当前用户的数据字典
 	+ `select username from dba_users; `查看数据字典中的用户
@@ -44,6 +52,10 @@
 	+ 对于scott这个用户默认是锁定的，现在我想把他解锁 alter user scott account unlock;
 	+ connect scott/tiger 
 	+ show user，发现他已经是user为‘scott’解锁状态了
+
+	+ ***修改密码***：打开cmd，输入sqlplus/as sysdba，接着alter user system identified by 密码（随意设置），重新设置system的密码;
+
+* ### 2-5 表空间
 	
 
 
