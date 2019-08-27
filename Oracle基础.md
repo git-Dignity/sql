@@ -1,16 +1,16 @@
 # Oracle #
 
 * ## Oracle官方下载地址：
-www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
-* ### 如果他电脑有开oracle数据库，则会显示OK（0毫秒）
+> <https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html>
+
+* ### 下载好后，我们就可以打开sql plus命令行玩转oracle，这个工具是oracle最底层，软件下载好会自动帮我们下载这个工具
 
 =========================================
 
-* ## 编码ASCII、ANSI、GBK、unicode、UTF-8
-* 编码ASCII、ANSI、GBK、unicode、UTF-8渊源、占用字节等：
-	> <https://blog.csdn.net/wskzgz/article/details/88710263>
+<!-- * 编码ASCII、ANSI、GBK、unicode、UTF-8渊源、占用字节等：
+	> <https://blog.csdn.net/wskzgz/article/details/88710263> -->
 	
-	+ ASCII码：　一个英文字母（不分大小写）占一个字节的空间，一个中文汉字占两个字节的空间。
+	+ 默认sys、system这两个账号不会被锁定
 	+ UTF-8编码：一个英文字符等于一个字节，一个中文（含繁体）等于三个字节。变长
 	+ Gbk就是放中文：中文两个字节，其他一个字节
 	+ Unicode，就什么都是两个字符，你好IT’ 四个字符占八个字节
