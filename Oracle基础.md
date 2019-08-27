@@ -8,7 +8,7 @@
 =========================================
 * sql plus命令:
 	+ 默认sys、system这两个账号不会被锁定
-	+ 可以在浏览器上登录oracle
+	+ 可以在浏览器上登录oracle，localhost:1158/em/console/logon/logon，sys/root123/sysdba
     + <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
 	</div>
