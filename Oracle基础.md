@@ -7,15 +7,29 @@
 
 =========================================
 * sql plus命令:
-	+ 默认sys、system这两个账号不会被锁定
+	+ 默认sys、system这两个账号不会被锁定，其他都会被锁定
 	+ 可以在浏览器上登录oracle，localhost:1158/em/console/logon/logon，sys/root123/sysdba
     + <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
 	</div>
 	
-	+ Gbk就是放中文：中文两个字节，其他一个字节
-	+ Unicode，就什么都是两个字符，你好IT’ 四个字符占八个字节
-	+ utf8一个汉字占3个字节，占一个字符；Gbk，就两个
+	+ Oracle的卸载可以在db_home文件夹下找到deinstall文件，里面有个bat的批处理卸载文件，一路点击回车即可完成删除。
+	+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/2.%E5%88%A0%E9%99%A4oracle.png"  height="330" width="495">
+	</div>
+
+* 系统用户:
+	+ 有四个系统用户，分别是sys、system、sysman、scott；
+	+ sys和system这两个都是权限比较高的用户，并且sys权限高于system，其中sys用户必须以管理员sysdba权限才能登录
+	+ sysman：用于操作企业管理器使用的，到这里这三个都是安装的时候就已经设置好的密码
+	+ Scott：他是创始人的名字，用户权限最小的系统用户，默认的密码是tiger
+
+* 使用系统用户登录:
+	+ 使用system用户登录 [username/password] [@server] [as sysdba|sysoper]  --  system可以不需要sysdba登录
+	如：system/root123 @orcl as sysdba； orcl就是自己设置的服务名，如果不是连别人的oracle，这里的@server就是写自己的@ip，
+	如果oracle安装在本机，还可以省略@orcl，最终 connect sys/root123 as sysdba;
+
+	+ 使用sys用户登录，和system一样，sys一定要用sysdba登录，connect换用户登录
 	
 =========================================
 
