@@ -6,15 +6,12 @@
 * ### 下载好后，我们就可以打开sql plus命令行玩转oracle，这个工具是oracle最底层，软件下载好会自动帮我们下载这个工具
 
 =========================================
-
-<!-- * 编码ASCII、ANSI、GBK、unicode、UTF-8渊源、占用字节等：
-	> <https://blog.csdn.net/wskzgz/article/details/88710263> -->
-	
+* sql plus命令:
 	+ 默认sys、system这两个账号不会被锁定
 	+ 可以在浏览器上登录oracle
-<div align="center">
-	<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
-</div>
+    + <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/1.%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E7%99%BB%E5%BD%95.png"  height="330" width="495">
+	</div>
 	
 	+ Gbk就是放中文：中文两个字节，其他一个字节
 	+ Unicode，就什么都是两个字符，你好IT’ 四个字符占八个字节
