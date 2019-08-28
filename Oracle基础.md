@@ -64,8 +64,13 @@
 	<br />
 
 	+ 查看用户的表空间：dba_tablespaces（系统管理员查看的数据字典）、user_tablespaces（普通用户）数据字典
+	+ 查看系统的表空间：select tablespace_name from dba_tablespaces;
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="330" width="695"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
+	</div>
+
+	+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
 	</div>
 
 
