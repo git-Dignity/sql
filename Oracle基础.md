@@ -157,20 +157,23 @@
 		列中所有数据大小接近一致使用uchar
 		列中数据项的大小差异很大，则使用 nvarchar
 		```
+	+ ===
 	<br />
 
 	* 创建表
-	+ ```create table userinfo
+	+  ```create table userinfo
 	(id number(6,0),
 	 username varchar2(20),
 	 userpwd varchar2(20),
 	 regdate date);
 	 ```
++ ===
 <br />
+
   * 对表的操作
 	+ desc查看表的结构 ：desc userinfo
 	+ 表就像是你买房子的房产证，表空间就像是你真正居住的空间；
-	+  ***添加字段 ***：`alter table table_name add column_name datatype;`
+	+  ***添加字段 ***：alter table table_name add column_name datatype;
 	+ 修改表的时候一般用alter table
 
 	+ PS：添加字段：alter table userinfo add remarks varchar2(500);
