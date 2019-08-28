@@ -157,17 +157,17 @@
 		列中所有数据大小接近一致使用uchar
 		列中数据项的大小差异很大，则使用 nvarchar
 		```
-+ ===
+
   <br />
 
 	* 创建表
 	+ ```create table userinfo
-	(id number(6,0),
+	 (id number(6,0),
 	 username varchar2(20),
 	 userpwd varchar2(20),
 	 regdate date);
 	 ```
-+ ===
+
 <br />
 
   * 对表的操作
