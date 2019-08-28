@@ -63,7 +63,7 @@
 	+ ***UNDO表空间***：存储数据修改之前的数据，用于事务回滚操作
 	<br />
 
-	+ ***查看用户的表空间***：dba_tablespaces（系统管理员查看的数据字典）、user_tablespaces（普通用户）数据字典
+	+ ***查看用户的表空间：dba_tablespaces（系统管理员查看的数据字典）、user_tablespaces（普通用户）数据字典***
 	+ ***查看系统的表空间***：`select tablespace_name from dba_tablespaces;`
 	+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
@@ -77,49 +77,49 @@
 
 	+ ***dba_users、user_users数据字典***
 	+ 查看用户表空间其实就是查看两张表，在oracle中指的是数据字典，分别为dba_tablespaces和user_tablespaces。然后这两个表空间有dba_users（管理员）和user_users（普通用户）,其实这两张数据字典表就是查看永久表空间，存储用户创建的数据库对象。上面这四张都是数据字典
-	+ ***查SYSTEM的默认表空间或者临时表空间***：select default_tablespace(默认表空间) | temporary_tablespace（临时表空间） from dba_users  where username='SYSTEM';
+	+ ***查SYSTEM的默认表空间或者临时表空间***：`select default_tablespace(默认表空间) | temporary_tablespace（临时表空间） from dba_users  where username='SYSTEM';`
 	+ 因为这两张数据字典表都是dba_users 
-	+ ***设置用户的默认表空间或临时表空间名字***：ALTER USER system(要修改的用户名) DEFAULT TABLESPACE system(默认表空间新名字);（默认system的默认表空间是users，现在我要改system的默认表空间的名字）
+	+ ***设置用户的默认表空间或临时表空间名字***：`ALTER USER system(要修改的用户名) DEFAULT TABLESPACE system(默认表空间新名字);`（默认system的默认表空间是users，现在我要改system的默认表空间的名字）
 
 	* 创建表空间:
-	+ 创建表：`CREATE TABLESPACE my_table DATAFILE '0721.dpf' SIZE 50m;`
-	+ 临时表创建：`create temporary tablespace my_table tempfile '0822.dpf' size 50m;`
+	+ ***创建表***：`CREATE TABLESPACE my_table DATAFILE '0721.dpf' SIZE 50m;`
+	+ ***临时表创建***：`create temporary tablespace my_table tempfile '0822.dpf' size 50m;`
 
 	+ 如果不知道我表空间存在哪里，可以看一下***dba_data_files***数据字典的file_name字段：desc dba_data_files(查看结构)
 	+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/6.%20dba_data_files%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9C%89%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C.png"  height="380" width="795"> 
 	</div>
 
-	+ 查看TEST1_TABLESPACE表空间存在哪里（永久表）：`select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE';`（记得表空间名字要大写）
-	+ 查看TEMPTEST1_TABLESPACE临时表空间存在哪里（临时表）：`select file_name from dba_temp_files where tablespace_name = 'TEMPTEST1_TABLESPACE';`
+	+ ***查看TEST1_TABLESPACE表空间存在哪里（永久表）***：`select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE';`（记得表空间名字要大写）
+	+ ***查看TEMPTEST1_TABLESPACE临时表空间存在哪里（临时表）***：`select file_name from dba_temp_files where tablespace_name = 'TEMPTEST1_TABLESPACE';`
 
 	+ 修改表空间的状态：
-	+ ***设置联机或脱机状态***：alter tablespace tablespace_name online|offline;
+	+ ***设置联机或脱机状态***：`alter tablespace tablespace_name online|offline;`
 	+ tablespace_name表名字，online联机（默认）、offline脱机
 	+ 只有在联机状态下才可以更改只读或可读写状态read only/read write
 	+ 脱机状态下，表空间无法用
 
-	+ test1_tablespace切换为***脱机***状态下：alter tablespace test1_tablespace offline;
+	+ test1_tablespace切换为***脱机状态下***：`alter tablespace test1_tablespace offline;`
 	+ desc dba_tablespaces这个数据字典有个status字段可以查看***当前表空间的状态***
 
 	+ ***查看表空间TEST1_TABLESPACE当前状态（是否为联机）***：`select status from dba_tablespaces where tablespace_name = 'TEST1_TABLESPACE';`
 	+ ***表空间test1_tablespace修改为联机状态***：`alter tablespace test1_tablespace online;`
 
-	+ ***设置表空间的只读或可读写状态***：alter tablespace tablespace_name read only|read write
+	+ ***设置表空间的只读或可读写状态***：`alter tablespace tablespace_name read only|read write`
 	+ read only只读，read write读写（默认下）
 	+ PS：只有联机状态下才能设置这个状态
 
-	+ 练习：***设置只读状态***：alter tablespace test1_tablespace read only;
+	+ 练习：***设置只读状态***：`alter tablespace test1_tablespace read only;`
 	+ 联机状态下才可以设置只读写，要是只读就显示read only，读写就显示联机online，因为可读写就是联机
 	+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/7.%20%E8%AE%BE%E7%BD%AE%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8F%AF%E8%AF%BB%E6%88%96%E8%80%85%E5%8F%AF%E8%AF%BB%E5%86%99.png"  height="380" width="795"> 
 	</div>
 
-	+ ***设置读写状态***：alter tablespace test1_tablespace read write;
+	+ ***设置读写状态***：`alter tablespace test1_tablespace read write;`
 
 	+ 为表空间添加数据文件：`alter tablespace test1_tablespace add datafile 'test2_file.dpf' size 50m;`
 	+ test1_tablespace表空间，'test2_file.dpf'数据文件 50m大小
-  + ***查看表空间TEST1_TABLESPACE的数据文件存的位置***，默认是有一个的：select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE'; 
+  + ***查看表空间TEST1_TABLESPACE的数据文件存的位置***，默认是有一个的：`select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE'; `
 	
 	+ ***删除表空间tablespace_name数据文件***：`alter tablespace tablespace_name drop datafile 'filename.dpf'`
 	+ 不能删除表空间默认的那个数据文件，如果要删除，就把表空间给删了
