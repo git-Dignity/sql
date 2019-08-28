@@ -178,18 +178,18 @@
 
 	+ PS：添加字段：alter table userinfo add remarks varchar2(500);
 
-	+  ***更改字段数据类型 ***：`alter table table_name modify column_name datatype;`
+	+ ***更改字段数据类型 ***：`alter table table_name modify column_name datatype;`
 	+ 可以更改的是modify 数据类型的长度，或者整个类型更改；更改的时候要让这个字段的数据为空才可以修改字段类型
 
-	+  ***删除字段 ***：`alter table table_name drop column column_name;`
-	+  ***修改字段名字 ***：`alter table table_name rename column column_name to new_column_name;`
+	+ ***删除字段 ***：`alter table table_name drop column column_name;`
+	+ ***修改字段名字 ***：`alter table table_name rename column column_name to new_column_name;`
 	+ table_name表名，column_name旧字段名，new_column_name新字段名字
 	+ 只是改名字而已，类型是不变的
 
-	+  ***修改表名 ***：`rename table_name to new_table_name;`
-	+  ***删除表 ***：`truncate table table_name`		
+	+ ***修改表名 ***：`rename table_name to new_table_name;`
+	+ ***删除表 ***：`truncate table table_name`		
 	+ 删除表中所有数据，而不是删除表，即是截断表，比delete快
-	+  ***删除表的结构和所有数据 ***：`drop table table_name(表名);`
+	+ ***删除表的结构和所有数据 ***：`drop table table_name(表名);`
 
 	
 
