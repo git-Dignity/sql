@@ -152,14 +152,15 @@
 	* 其他类型
 	+ blob 可存放4G[二进制]
 	+ clob 可存放4G[字符串形式]
-   ```列中数值指定大小接近一致使用char
+  + ```列中数值指定大小接近一致使用char
 		列中数值大小显著不同使用varchar
 		列中所有数据大小接近一致使用uchar
-		列中数据项的大小差异很大，则使用 nvarchar。
+		列中数据项的大小差异很大，则使用 nvarchar
 		```
 
-	+ 创建表
-	```create table userinfo
+
+	* 创建表
+	+ ```create table userinfo
 	(id number(6,0),
 	 username varchar2(20),
 	 userpwd varchar2(20),
