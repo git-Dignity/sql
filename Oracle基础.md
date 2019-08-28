@@ -130,9 +130,63 @@
 	<br />
 
 	* ### 3 管理表
-	* 
-	+ 
-	+ 
+	* 表中的约定：
+	+ 1. 每一列数据必须具有相同数据类型
+	+ 2. 列名唯一
+	+ 3. 每一行数据的唯一性
+
+	* 字符型：
+	+ char(2000)、nchar(1000) 放中文  
+	+ varchar2(4000)、nvarchar2(2000)
+  + 效率还是char定长好，因为他不用像varchar2去计算长度；如：如果char(10),你只给放3个，他会自己加7个空格达到10个长度，定长；而varchar2(10)就只给他3个，他就变成varchar2(3)，注意内存就varchar2()好，效率就char()好
+	
+	* 数值型
+	+ number(p,s)	十进制（常用）
+	+ number(5,2)，有效数字5位，保留2位小数，如123.45
+  + float(n)   二进制数据，1-126位，转换为十进制数时要乘以0.30103
+	
+	* 日期型
+	+ date 精确到秒（常用）
+	+ timestamp 精确到小数秒
+
+	* 其他类型
+	+ blob 可存放4G[二进制]
+	+ clob 可存放4G[字符串形式]
+   ```列中数值指定大小接近一致使用char
+		列中数值大小显著不同使用varchar
+		列中所有数据大小接近一致使用uchar
+		列中数据项的大小差异很大，则使用 nvarchar。
+		```
+
+	+ 创建表
+	```create table userinfo
+	(id number(6,0),
+	 username varchar2(20),
+	 userpwd varchar2(20),
+	 regdate date);
+	 ```
+	+ desc查看表的结构 ：desc userinfo
+	+ 表就像是你买房子的房产证，表空间就像是你真正居住的空间；
+	+ 添加字段：alter table table_name add column_name datatype;
+	+ 修改表的时候一般用alter table
+
+	+ PS：添加字段：alter table userinfo add remarks varchar2(500);
+
+	+ 更改字段数据类型：alter table table_name modify column_name datatype;
+	+ 可以更改的是modify 数据类型的长度，或者整个类型更改；更改的时候要让这个字段的数据为空才可以修改字段类型
+
+	+ 删除字段：alter table table_name drop column column_name;
+	+ 修改字段名字：alter table table_name rename column column_name to new_column_name;
+	+ table_name表名，column_name旧字段名，new_column_name新字段名字
+	+ 只是改名字而已，类型是不变的
+
+	+ 修改表名：rename table_name to new_table_name;
+	+ 删除表：truncate table table_name		删除表中所有数据，而不是删除表，即是截断表，比delete快
+	+ 删除表的结构和所有数据：drop table table_name(表名);
+
+	
+
+
 	
 
 
