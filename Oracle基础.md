@@ -109,8 +109,22 @@
 	+ 练习：设置只读状态：alter tablespace test1_tablespace read only;
 	+ 联机状态下才可以设置只读写，要是只读就显示read only，读写就显示联机online，因为可读写就是联机
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/6.%20dba_data_files%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9C%89%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/7.%20%E8%AE%BE%E7%BD%AE%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8F%AF%E8%AF%BB%E6%88%96%E8%80%85%E5%8F%AF%E8%AF%BB%E5%86%99.png"  height="380" width="795"> 
 	</div>
+
+	+ 设置读写状态：alter tablespace test1_tablespace read write;
+
+	+ Wie表空间添加数据文件：alter tablespace test1_tablespace add datafile 'test2_file.dpf' size 50m;
+	+ test1_tablespace表空间，'test2_file.dpf'数据文件 50m大小
+  + 查看表空间TEST1_TABLESPACE的数据文件存的位置，默认是有一个的：select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE'; 
+	
+	+ 删除表空间tablespace_name数据文件'filename.dpf'：alter tablespace tablespace_name drop datafile 'filename.dpf'
+	+ 不能删除表空间默认的那个数据文件，如果要删除，就把表空间给删了
+
+	+ 删除表空间：drop tablespace tablespace_name（表空间名字）
+	+ 删除表空间及数据文件：drop tablespace tablespace_name（表空间名字） including contents;
+
+
 
 
 
