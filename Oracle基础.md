@@ -76,6 +76,8 @@
 	</div>
 
 	+ dba_users、user_users数据字典
+	+ 查看用户表空间其实就是查看两张表，在oracle中指的是数据字典，分别为dba_tablespaces和user_tablespaces。然后这两个表空间有dba_users（管理员）和user_users（普通用户）,其实这两张数据字典表就是查看永久表空间，存储用户创建的数据库对象。上面这四张都是数据字典
+	+ 查SYSTEM的默认表空间或者老师表空间：select default_tablespace(默认表空间) | temporary_tablespace（临时表空间） from dba_users  where username='SYSTEM';
 	+ 设置用户的默认表空间或临时表空间：ALTER USER system(要修改的用户名) DEFAULT TABLESPACE system(默认表空间新名字);（默认system的默认表空间是users，现在我要改system的默认表空间的名字）
 
 	* 创建表空间:
