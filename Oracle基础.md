@@ -69,9 +69,40 @@
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
 	</div>
 
+	+ 查看system的默认表空间和临时表空间：select default_tablespace,temporary_tablespace from dba_users where username = 'SYSTEM'; 
+	+ default_tablespace默认表空间，temporary_tablespace临时表空间，字段
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/4.%20%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/5.%20%E6%9F%A5%E7%9C%8B%E9%BB%98%E8%AE%A4%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%92%8C%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
 	</div>
+
+	+ dba_users、user_users数据字典
+	+ 设置用户的默认表空间或临时表空间：ALTER USER system(要修改的用户名) DEFAULT TABLESPACE system(默认表空间新名字);（默认system的默认表空间是users，现在我要改system的默认表空间的名字）
+
+	* 创建表空间:
+	+ 创建表：CREATE TABLESPACE my_table DATAFILE '0721.dpf' SIZE 50m;
+	+ 临时表创建：create temporary tablespace my_table tempfile '0822.dpf' size 50m;
+
+	+ 如果不知道我表空间存在哪里，可以看一下dba_data_files数据字典的file_name字段：desc dba_data_files(查看结构)
+	+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/5.%20%E6%9F%A5%E7%9C%8B%E9%BB%98%E8%AE%A4%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%92%8C%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
+	</div>
+
+	+ 查看TEST1_TABLESPACE表空间存在哪里（永久表）：select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE';（记得表空间名字要大写）
+	+ 查看TEMPTEST1_TABLESPACE临时表空间存在哪里（临时表）：select file_name from dba_temp_files where tablespace_name = 'TEMPTEST1_TABLESPACE';
+
+	+ 修改表空间的状态：
+	+ 设置联机或脱机状态：alter tablespace tablespace_name online|offline;
+	+ tablespace_name表名字，online联机（默认）、offline脱机
+	+ 只有在联机状态下才可以更改只读或可读写状态read only/read write
+	+ 脱机状态下，表空间无法用
+
+	+ test1_tablespace切换为脱机状态下：alter tablespace test1_tablespace offline;
+	+ desc dba_tablespaces这个数据字典有个status字段可以查看当前表空间的状态
+
+
+
+
+
 
 
 
