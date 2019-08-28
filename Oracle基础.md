@@ -157,9 +157,8 @@
 		列中所有数据大小接近一致使用uchar
 		列中数据项的大小差异很大，则使用 nvarchar
 		```
-
-  <br />
-
+  + 0.0
+	
 	* 创建表
 	+ ```create table userinfo
 	 (id number(6,0),
