@@ -84,7 +84,7 @@
 
 	+ 如果不知道我表空间存在哪里，可以看一下dba_data_files数据字典的file_name字段：desc dba_data_files(查看结构)
 	+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/5.%20%E6%9F%A5%E7%9C%8B%E9%BB%98%E8%AE%A4%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%92%8C%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/6.%20dba_data_files%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9C%89%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C.png"  height="380" width="795"> 
 	</div>
 
 	+ 查看TEST1_TABLESPACE表空间存在哪里（永久表）：select file_name from dba_data_files where tablespace_name = 'TEST1_TABLESPACE';（记得表空间名字要大写）
@@ -98,6 +98,22 @@
 
 	+ test1_tablespace切换为脱机状态下：alter tablespace test1_tablespace offline;
 	+ desc dba_tablespaces这个数据字典有个status字段可以查看当前表空间的状态
+
+	+ 查看表空间TEST1_TABLESPACE当前状态（是否为联机）：select status from dba_tablespaces where tablespace_name = 'TEST1_TABLESPACE';
+	+ 表空间test1_tablespace修改为联机状态：alter tablespace test1_tablespace online;
+
+	+ 设置表空间的只读或可读写状态：alter tablespace tablespace_name read only|read write
+	+ read only只读，read write读写（默认下）
+	+ PS：只有联机状态下才能设置这个状态
+
+	+ 练习：设置只读状态：alter tablespace test1_tablespace read only;
+	+ 联机状态下才可以设置只读写，要是只读就显示read only，读写就显示联机online，因为可读写就是联机
+	+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/6.%20dba_data_files%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9C%89%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C.png"  height="380" width="795"> 
+	</div>
+
+
+
 
 
 
