@@ -158,16 +158,15 @@
 		列中数据项的大小差异很大，则使用 nvarchar
 		```
   + 0.0
-	
+
 	* 创建表
 	+ ```create table userinfo
-	 (id number(6,0),
-	 username varchar2(20),
-	 userpwd varchar2(20),
-	 regdate date);
-	 ```
-
-<br />
+	  (id number(6,0),
+	  username varchar2(20),
+	  userpwd varchar2(20),
+	  regdate date);
+	  ```
+	+ 0.0
 
   * 对表的操作
 	+ desc查看表的结构 ：desc userinfo
