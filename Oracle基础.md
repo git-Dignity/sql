@@ -206,7 +206,7 @@
 		regdate date default sysdate);
 	```
 
-	+ 使用默认值
+* 使用默认值
 	+ 插入：insert into userinfo1 values(1);
 	+ 这样是不行的，还没有一一对应
 	+ 正确的做法是：insert into userinfo1(id) values(1);
