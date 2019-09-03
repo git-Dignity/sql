@@ -160,7 +160,8 @@
   + 0.0
 
 	* 创建表
-	+ ```create table userinfo
+	+ ```
+	  create table userinfo
 	  (id number(6,0),
 	  username varchar2(20),
 	  userpwd varchar2(20),
