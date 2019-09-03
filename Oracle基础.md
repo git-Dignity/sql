@@ -212,6 +212,52 @@
 	+ 正确的做法是：insert into userinfo1(id) values(1);
 	+ 表名前面要用小括号，需要给哪个字段添加就写上
 
+	+ 为已存在的表的字段添加默认值：alter table userinfo modify email default '无'
+	+ modify，default为关键字
+	+ 当然我给email这个字段添加默认值，我也可以在添加的时候给他设置值
+	+ insert into userinfo1(id,email) values(4,'aaa');
+
+	+ 在建表时复制表： create table table_new as select column1,...|*from table_old;
+	+ 如：create table userinfo_new as select * from userinfo;
+	+ 创建表的时候，可以复制别的表的表结构（字段）好表数据，即把别的表复制一份到userinfo_new这个新表上
+	
+	+ 在创建表的时候，只复制个别字段结构和数据：create table userinfo_new1 as select id,username from userinfo;
+	+ 只复制userinfo的id和name到这个userinfo_new1这个新表上
+
+	+ 在添加时复制表
+	+ insert into table_new [(column1,...)] select column1,... |* from table_old;
+	+ table_new这个表是已经存在的，从select到最后这个位置本来是values，用select代替，还有这个table_new这个表的字段要和后面的select的字段的顺序类型一致，相匹配
+	+ 在添加时复制表（全部）：insert into userinfo_new select * from userinfo;		已更新4条
+	+ 添加数据时，把数据从别的表中拿过来，这个语句查出userinfo的全部数据添加到userinfo_new表中
+	+ userinfo_new只有id和username，而userinfo多了个为空的email字段，但是userinfo的前两个字段跟他是一样的，只要顺序对的上就可以
+
+	+ 在添加时复制表（部分）：insert into userinfo_new(id,username) select id,username from userinfo;
+	+ 指定复制某些字段，userinfo的字段名字可以跟userinfo_new的字段名字不一样，但类型要是一样的
+
+* update更新
+	+ 更新字段数据：update table_name set column1 = value1,...[where conditions]
+	+ 更新数据的时候，新的更新值数据类型要和之前的类型一致；不加上where就是更新全部数据，加上指具体哪条
+	+ 如：update userinfo set userpwd = '111',email = '111@qq.com';		已更新4条
+	+ 这样就是全部数据都更新了，多个值的更新
+	
+* delete删除
+	+ delete from table_name [where conditions]
+	+ 无条件删除全部数据（trancate效率更高）
+	+ 但是delete可以删除加条件，trancate删除的是全部数据，不可以加条件
+
+
+
+* ### 5 约束
+	* 
+	+ 
+	+ 
+
+
+
+		
+	
+	 
+
 	
 
 
