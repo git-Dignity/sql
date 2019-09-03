@@ -192,62 +192,61 @@
 	
 * ### 4 操作表中数据
 	* 
-	+ insert插入指定字段：insert into table_name (column1,column2,...) values(value1,value2,...)
+	+ ***insert插入指定字段***：`insert into table_name (column1,column2,...) values(value1,value2,...)`
 	+ 注：插入指定字段要确保其他字段是允许为空的，不允许为空就报错
-	+ 表中插入整条数据：insert：insert into table_name values(value1,value2,...)
-	+ 插入表全部数据时不需要列出数据表的字段，values后面插入数据要跟表的字段一一对应！
-	+ 如：insert into userinfo values(1,'xxx',sysdate);  
-	+ sysdate：获取当前时间，是系统提供的函数
+	+ 表中插入***整条数据***：`insert：insert into table_name values(value1,value2,...)`
+	+ 插入表全部数据时不需要列出数据表的字段，***values后面插入数据要跟表的字段一一对应！***
+	+ 如：`insert into userinfo values(1,'xxx',sysdate);  `
+	+ ***sysdate***：获取当前时间，是系统提供的函数
 
-	+ 创建表时给定字段添加默认值default
+	+ ***创建表时给定字段添加默认值default***
 	+ ```
 		create table userinfo1
 		(id,number(6,0),
 		regdate date default sysdate);
 	```
-
-* 使用默认值
-	+ 插入：insert into userinfo1 values(1);
+* ***使用默认值***
+	+ ***插入***：insert into userinfo1 values(1);
 	+ 这样是不行的，还没有一一对应
-	+ 正确的做法是：insert into userinfo1(id) values(1);
+	+ 正确的做法是：`insert into userinfo1(id) values(1);`
 	+ 表名前面要用小括号，需要给哪个字段添加就写上
 
-	+ 为已存在的表的字段添加默认值：alter table userinfo modify email default '无'
+	+ ***为已存在的表的字段添加默认值***：`alter table userinfo modify email default '无';`
 	+ modify，default为关键字
-	+ 当然我给email这个字段添加默认值，我也可以在添加的时候给他设置值
-	+ insert into userinfo1(id,email) values(4,'aaa');
+	+ 当然我给email这个字段添加默认值，我也可以在***添加的时候给他设置值***
+	+ `insert into userinfo1(id,email) values(4,'aaa');`
 
-	+ 在建表时复制表： create table table_new as select column1,...|*from table_old;
-	+ 如：create table userinfo_new as select * from userinfo;
+	+ ***在建表时复制表***： `create table table_new as select column1,...|*from table_old;`
+	+ 如：`create table userinfo_new as select * from userinfo;`
 	+ 创建表的时候，可以复制别的表的表结构（字段）好表数据，即把别的表复制一份到userinfo_new这个新表上
 	
-	+ 在创建表的时候，只复制个别字段结构和数据：create table userinfo_new1 as select id,username from userinfo;
+	+ 在创建表的时候，***只复制个别字段结构和数据***：`create table userinfo_new1 as select id,username from userinfo;`
 	+ 只复制userinfo的id和name到这个userinfo_new1这个新表上
 
-	+ 在添加时复制表
-	+ insert into table_new [(column1,...)] select column1,... |* from table_old;
+	+ ***在添加时复制表***
+	+ `insert into table_new [(column1,...)] select column1,... |* from table_old;`
 	+ table_new这个表是已经存在的，从select到最后这个位置本来是values，用select代替，还有这个table_new这个表的字段要和后面的select的字段的顺序类型一致，相匹配
-	+ 在添加时复制表（全部）：insert into userinfo_new select * from userinfo;		已更新4条
+	+ ***在添加时复制表（全部）***：`insert into userinfo_new select * from userinfo;`		已更新4条
 	+ 添加数据时，把数据从别的表中拿过来，这个语句查出userinfo的全部数据添加到userinfo_new表中
 	+ userinfo_new只有id和username，而userinfo多了个为空的email字段，但是userinfo的前两个字段跟他是一样的，只要顺序对的上就可以
 
-	+ 在添加时复制表（部分）：insert into userinfo_new(id,username) select id,username from userinfo;
-	+ 指定复制某些字段，userinfo的字段名字可以跟userinfo_new的字段名字不一样，但类型要是一样的
+	+ ***在添加时复制表（部分）***：`insert into userinfo_new(id,username) select id,username from userinfo;`
+	+ ***指定复制某些字段***，userinfo的字段名字可以跟userinfo_new的字段名字不一样，但类型要是一样的
 
-* update更新
-	+ 更新字段数据：update table_name set column1 = value1,...[where conditions]
+* ***update更新***
+	+ ***更新字段数据***：`update table_name set column1 = value1,...[where conditions]`
 	+ 更新数据的时候，新的更新值数据类型要和之前的类型一致；不加上where就是更新全部数据，加上指具体哪条
-	+ 如：update userinfo set userpwd = '111',email = '111@qq.com';		已更新4条
+	+ 如：`update userinfo set userpwd = '111',email = '111@qq.com';`		已更新4条
 	+ 这样就是全部数据都更新了，多个值的更新
 	
-* delete删除
-	+ delete from table_name [where conditions]
-	+ 无条件删除全部数据（trancate效率更高）
+* ***delete删除***
+	+ `delete from table_name [where conditions]`
+	+ 无条件删除全部数据（***trancate效率更高***）
 	+ 但是delete可以删除加条件，trancate删除的是全部数据，不可以加条件
 
 
 
-* ### 5 约束
+* ### 5 ***约束***
 	* 
 	+ 
 	+ 
