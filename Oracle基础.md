@@ -190,7 +190,27 @@
 	+ ***删除表的结构和所有数据***：`drop table table_name(表名);`
 
 	
+* ### 4 操作表中数据
+	* 
+	+ insert插入指定字段：insert into table_name (column1,column2,...) values(value1,value2,...)
+	+ 注：插入指定字段要确保其他字段是允许为空的，不允许为空就报错
+	+ 表中插入整条数据：insert：insert into table_name values(value1,value2,...)
+	+ 插入表全部数据时不需要列出数据表的字段，values后面插入数据要跟表的字段一一对应！
+	+ 如：insert into userinfo values(1,'xxx',sysdate);  
+	+ sysdate：获取当前时间，是系统提供的函数
 
+	+ 创建表时给定字段添加默认值default
+	+ ```
+		create table userinfo1
+		(id,number(6,0),
+		regdate date default sysdate);
+	```
+
+	+ 使用默认值
+	+ 插入：insert into userinfo1 values(1);
+	+ 这样是不行的，还没有一一对应
+	+ 正确的做法是：insert into userinfo1(id) values(1);
+	+ 表名前面要用小括号，需要给哪个字段添加就写上
 
 	
 
