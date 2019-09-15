@@ -191,7 +191,7 @@
 
 	
 * ### 4 操作表中数据
-	* 
+	
 	+ ***insert插入指定字段***：`insert into table_name (column1,column2,...) values(value1,value2,...)`
 	+ 注：插入指定字段要确保其他字段是允许为空的，不允许为空就报错
 	+ 表中插入***整条数据***：`insert：insert into table_name values(value1,value2,...)`
@@ -244,12 +244,64 @@
 	+ 无条件删除全部数据（***trancate效率更高***）
 	+ 但是delete可以删除加条件，trancate删除的是全部数据，不可以加条件
 
+* 怎么创建数据库用户？
+	+ 使用最高权限的sys用户登录数据库：conn sys/密码 as sysdba;
+	+ 创建数据库用户，例如此处创建一个test用户，登录密码自定义：create user  test identified by  密码；
+	+ 授权，授予test用户连接数据库的权限：grant create session to test;
+	+ 授权，给test用户授操作表空间的权限：grant  unlimited tablespace to  test;
+
+* 用sqlplus增删改不用commit吗？
+	+ 自动提交：若把AUTOCOMMIT设置为ON，则在插入、修改、删除语句执行后，系统将自动进行提交，这就是自动提交。其格式为：SQL>SET AUTOCOMMIT ON；
+
+
+
+
+
 
 
 * ### 5 ***约束***
-	* 
-	+ 
-	+ 
+	* 非空约束
+	+ 在创建表时设置非空约束
+	+ ```create table table_name(
+		column_name datatype not null,...
+	);```
+	+ PS:数据类型后面加上not null（非空约束）
+	+ 如果设置了非空约束，插入时插入为空就报错；要是没给他值，可以结合默认值
+
+	+ 在修改表时添加非空约束：alter table table_name modify column_name datatype not null;
+	+ 给已存在的表的字段添加非空约束：alter table userinfo modify username varchar2(20) not null;
+	+ PS:有时候报错是因为：表中的数据有些是空的数据，所以要把他们先删了。
+	+ 在修改表时去除非空约束：alter table table_name modify column_name datatype null;
+	+ not null 改为 null，允许为空
+
+	* 主键约束
+	+ 一张表只能设计一个主键约束；
+	+ 主键约束可以由多个字段构成（联合主键或复合主键）
+	+ 在创建表时设置主键约束：```create table table_name(
+		column_name datatype primary key,...
+	)```
+
+	+ 如： ```create table userinfo_p
+	(id number(6,0) primary key,
+	 username varchar2(20),
+	 userpwd varchar2(20)
+	);```
+	+ 为id添加主键约束，主键也是默认是非空not null
+	+ 在创建表时设置主键约束：constraint constraint_name primary key(column_name1,...)
+	+ 联合主键 constraint
+	+ 栗子：```create table userinfo_p1
+		(id number(6,0),
+		 username varchar2(20),
+		 userpwd varchar2(20),
+		 constraint pk_id_username primary key(id,username)
+		);```
+		+ constraint这是关键字；	pk_id_username这个是联合主键的名字（自己起的）
+		+ 联合主键：为id和username共同创建主键
+		+ 如果你查一下desc表的结构，你会发现id和username都是not null不为空
+		+ 如果我忘记联合主键的名字，去查一下***desc user_constraints***这个数据字典
+		
+
+
 
 
 
