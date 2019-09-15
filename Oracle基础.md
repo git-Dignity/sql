@@ -451,6 +451,22 @@
 		+ 1.五个中就主键约束是要求唯一的，而且可以由多个字段组成，也就是表级约束可以多个字段写在一起
 		+ 2.五个中只有外键是涉及两个表的
 
+		+ 创建表（修改）时设置约束
+		+ 只有唯一约束和最特殊：alter table table_name modify column_name datatype not null;
+		+ 不为空就not null，为空就null
+		+ 更改约束名字：rename constraint old_name to new_name
+		+ 数据字典（user_constraints），不知道约束名字可以使用这个字典去查看
+		+ 删除约束
+		+ 只有非空约束最特殊设为null就删除，默认也是null：alter table table_name modify column_name datatype null;
+		+ disable|enable constraint constraint_name
+		+ drop constraint constraint_name
+		+ drop primary key，就是主键比较特殊，只有一个，可以用这个方法删除
+		+ 都是在alter table table_name之后加上
+		+ ***唯一约束不能有重复值，可以有空值，但是空值只有一个***
+
+		+ 查询
+
+
 
 
 
