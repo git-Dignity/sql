@@ -383,8 +383,78 @@
 		+ 当然后面也可以设置级别删除
 		+ 删除外键约束：disable | enable constraint constraint_name
 		+ 禁用 | 启用 外键
-		+ 
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/9.%20%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E7%A6%81%E7%94%A8%E5%90%AF%E7%94%A8.png"  height="380" width="795"> 
+		</div>
 		
+		+ user_constraints可以查表的主键外键约束名字、是否禁用
+		+ 要是不知道表的约束是否为启用，可查看user_constraints数据字典
+		+ 删除外键约束：drop constraint constraint_name;
+		+ 彻底删除外键约束，前面加alter table 表名字 + 
+
+		* 唯一约束
+		+ 唯一约束和主键约束的区别：
+		+ 1）主键字段必须是非空的，唯一约束允许有一个空值
+		+ 2）唯一约束和主键约束都是保证字段值的唯一性
+		+ 3）唯一约束在一张表中可以有多个，主键每张表中只有一个
+		
+		+ 在创建表时设置唯一约束：create table table_name(column_name datatype unique,...)
+		+ 如：```create table userinfo_u
+		(id varchar2(10) primary key,
+		 username varchar2(20) unique,
+		 userpwd varchar2(20)
+		);```
+		+ 所谓唯一约束就是在表中的字段是唯一的，但是可以为空；比如用户名一般都是唯一的
+		+ 是字段的值是唯一的，表中可以设置多个唯一约束
+		+ 在创建表时设置唯一约束（第二种方法）：constraint constraint_name unique(column_name)
+		+ 表级设置唯一约束，每一个唯一约束的名字都是唯一的
+		+ 假如有多个这样的，就写多个这条语句，不能写在unique()括号里面的，因为约束名字是唯一的
+		+ 如：```create table userinfo_u1
+		(id varchar2(10) primary key,
+		 username varchar2(20),
+		 userpwd varchar2(20),
+		 constraint un_username unique(username)
+		);```
+		+ 表级设置唯一约束
+		+ 在修改表时添加唯一约束：add constraint constraint_name unique(column_name);
+		+ 一般命名唯一约束都是un_xxx
+		+ 删除唯一约束：disable|enable constraint constraint_name
+		+ u:唯一约束、p：主键、r：外键、c：检查约束
+		+ 删除唯一约束：drop constraint constraint_name
+
+		+ 在创建表时设置检查约束：create table table_name (column_name datatype check(expressions),...)
+		+ expressions[表达式，即约束条件]
+		+ 如：```create table userinfo_c
+		(id varchar2(10) primary key,
+		username varchar2(20),
+		salary number(6,0) check(salary>0));```
+		+ 在创建表设置检查约束，让工资salary大于0，check关键字
+		+ 插入数据：insert into userinfo_c values(1,'aaa',-50);
+		+ 这样就报错，因为salary要大于0，很明显-50小于0
+
+		+ 在创建表时设置检查约束：constraint constraint_name check(expressions)
+		+ 可以在列级设置，也可以在这里的表级设置，一般命名都是ck_xxx
+		+ 如：```create table userinfo_c1
+		(id varchar2(10) primary key,
+		username varchar2(20),
+		salary number(6,0),
+		constraint ck_salary check(salary>0) 
+		);```
+		+ ck_salary约束名字，在表级设置检查约束
+		+ 在修改表时添加检查约束：add constraint constraint_name check(expressions);
+		+ 如：alter table userinfo_c3 add constraint ck_salary_new check(salary>0);
+		+ 在已存在的表中添加检查约束
+		+ 删除检查约束：disable | enable constraint constraint_name
+		+ 删除检查约束：drop constraint constraint_name 
+
+		+ 总结：非空约束、主键约束、外键约束、唯一约束、检查约束
+		+ 1.五个中就主键约束是要求唯一的，而且可以由多个字段组成，也就是表级约束可以多个字段写在一起
+		+ 2.五个中只有外键是涉及两个表的
+
+
+
+
+
 
 
 
