@@ -299,7 +299,100 @@
 		+ 联合主键：为id和username共同创建主键
 		+ 如果你查一下desc表的结构，你会发现id和username都是not null不为空
 		+ 如果我忘记联合主键的名字，去查一下***desc user_constraints***这个数据字典
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/8.%E6%9F%A5%E6%89%BE%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.png"  height="380" width="795"> 
+		</div>
+
+	  + 查出表中的联合主键名字：select constraint_name,constraint_type from user_constraints where table_name = 'USERNAME_P1' 
+		+ constraint_name联合主键字段，constraint_type类型；table_name表名一定要大写
+		+ 如果表没有给他设置联合主键的话，就查找出默认的id主键，默认主键名字是系统给他起的（名字一般叫SYS_COO什么什么）
+
+		+ 在修改表时添加主键约束：add constraint constraint_name primary key(column_name1,...);
+		+ constraint_name主键的名字一般都是pk_xxx这样子的，primary key(column_name1)要设为主键的字段
+		+ 更改约束的名称：rename constraint old_name to new_name
+		+ 如：alter table userinfo rename constraint_pk_id to new_pk_id;
+		+ 禁用主键约束：alter table userinfo disable constraint new_pk_id;
+		+ 查看主键状态：select constraint_name,status from user_constraints where table_name = 'USERINFO';
+		+ alter table userinfo add constraint pk_id primary key(id);
+		+ 添加主键之前，表中的字段是为空的，唯一的
+		+ 删除主键约束： disable|enable constraint constraint_name
+		+ 禁用|启用 constraint约束关键字
+		+ 就比如我现在不想要主键约束，我就先禁用disable他，以后想要就enable启用他
+		+ 删除主键约束：drop constaint constraint_name 
+		+ 注意drop的是constaint，其他都有个r,constraint
+		+ drop primary key[cascade]
+		+ 因为主键只有一个，所以可以不用写名字；[cascade]删除主键约束，可选项（外键用的），就是有外键引用他，也会将其外键的主键给删除
+		+ 删除表的主键：alter table userinfo_p drop primary key;
+
+		+ 在创建表时设置外键约束
+		+ 从表中外键字段的值必须来自主表中的相应字段的值，或者为null值
+		+ ```create table table1
+		(column_name datatype references
+		table2(column_name),...);```
+		+ create table 创建表名
+		(字段名 字段类型 references
+		外键表名(外键表的主键字段));
+		+ 设置外键约束时，主表的字段必须是主键，table1是从表，table2是主表，主从表的字段类型要是一样
+
+		+ 练习：
+		+ ```create table typeinfo
+		(typeid varchar2(10) primary key,
+		 typename varchar2(20)
+		);```
+
+		+ ```create table userinfo_f
+		(id varchar2(10) primary key,
+		 username varchar2(20),
+		 typeid_new varchar2(10) references typeinfo(typeid));```
+		+ userinfo_f从表创建的时候，设置外键约束，这个typeid_new和主表typeinfo的typeid关键外键，类型要一样
 		
+		+ 在创建表时设置外键约束（第二种方法）
+		+ constraint constraint_name foreign key(column_name) references
+		table_name(column_name) [on delete cascade]
+		+ constraint关键字，外键名字constraint_name一般叫fk_xxx
+		+ [on delete cascade]是级联删除，如果主表中该条记录被删除，那么从表中使用了这条记录的值也会被删除
+
+		+ 根据第一种方法的例子继续
+		+ create table userinfo_f1
+		(id varchar2(10) primary key,
+		 username varchar2(20),
+		 typeid_new varchar2(10),
+		 constraint fk_typeid_new foreign key(typeid_new) references typeinfo(typeid);
+
+		+ 接下来介绍[on delete cascade]是级别删除
+		+ create table userinfo_f2
+		(id varchar2(10) primary key,
+		 username varchar2(20),
+		 typeid_new varchar2(10),
+		 constraint fk_typeid_new2 foreign key(typeid_new) references typeinfo(typeid) on delete cascade
+		+ fk_typeid_new2这些外键约束的名字要唯一，主表删，从表对应的数据也会跟着删
+
+		+ 如：主表插入一行：insert into typeinfo values(1,1)	（注意这里插入的值是1）
+		+ 从表也插入一行：insert into userinfo_f1(id,typeid_new)values(1,2);
+		+ 这样就报‘违反完整约束条件’的错，因为typeid_new是关联外键的，所以值要和主表的一样，所以不能是2，要1或者null就可以
+
+		+ 再如：主表插入一行：insert into typeinfo values(2,2)	（注意这里插入的值是2）
+		+ 从表也插入一行：insert into userinfo_f1(id,typeid_new)values(2,null);
+		+ 这样也是可以的，2或者null都可以
+		+ 总结：***从表的关联的外键必须和主表的值一样或者是null***
+
+		+ 在修改表时添加外键约束
+		+ add constraint constraint_name foreign key(column_name) references table_name(column_name)[on delete cascade]
+		+ 在已存在的表添加外键约束：alter table userinfo_f4 add constraint fk_typeid_alter foreign key(typeid_new)references typeinfo(typeid);
+		+ userinfo_f4的typeid_new和另外的typeinfo表的typeid关联外键约束
+		+ 当然后面也可以设置级别删除
+		+ 删除外键约束：disable | enable constraint constraint_name
+		+ 禁用 | 启用 外键
+		+ 
+		
+
+
+
+
+
+
+
+
 
 
 
