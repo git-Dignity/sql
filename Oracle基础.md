@@ -411,25 +411,25 @@
 		+ 3）唯一约束在一张表中可以有多个，主键每张表中只有一个
 		
 		+ ***在创建表时设置唯一约束***：`create table table_name(column_name datatype unique,...)`
-		+ 如：```
-			create table userinfo_u
-			(id varchar2(10) primary key,
-			username varchar2(20) unique,
-			userpwd varchar2(20)
-			);
+		+ ```
+				create table userinfo_u
+				(id varchar2(10) primary key,
+				username varchar2(20) unique,
+				userpwd varchar2(20)
+				);
 
 		+ 所谓唯一约束就是在表中的字段是唯一的，但是可以为空；比如用户名一般都是唯一的
 		+ 是字段的值是唯一的，表中可以设置多个唯一约束
 		+ ***在创建表时设置唯一约束（第二种方法）***：`constraint constraint_name unique(column_name)`
 		+ 表级设置唯一约束，每一个唯一约束的名字都是唯一的
 		+ 假如有多个这样的，就写多个这条语句，不能写在unique()括号里面的，因为约束名字是唯一的
-		+ 如：```
-			create table userinfo_u1
-			(id varchar2(10) primary key,
-			username varchar2(20),
-			userpwd varchar2(20),
-			constraint un_username unique(username)
-			);
+		+ ```
+				create table userinfo_u1
+				(id varchar2(10) primary key,
+				username varchar2(20),
+				userpwd varchar2(20),
+				constraint un_username unique(username)
+				);
 
 		+ 表级设置唯一约束
 		+ ***在修改表时添加唯一约束***：`add constraint constraint_name unique(column_name);`
@@ -459,7 +459,7 @@
 			salary number(6,0),
 			constraint ck_salary check(salary>0) 
 			);
-			
+
 		+ ck_salary约束名字，在表级设置检查约束
 		+ ***在修改表时添加检查约束***：`add constraint constraint_name check(expressions);`
 		+ 如：alter table userinfo_c3 add constraint ck_salary_new check(salary>0);
