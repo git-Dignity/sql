@@ -328,29 +328,36 @@
 
 		+ ***在创建表时设置外键约束***
 		+ 从表中外键字段的值必须来自主表中的相应字段的值，或者为null值
-		+ ```create table table1
-		(column_name datatype references
-		table2(column_name),...);```
+		+ ```
+			create table table1
+			(column_name datatype references
+			table2(column_name),...);
+
 		+ create table 创建表名
 		(字段名 字段类型 references
 		外键表名(外键表的主键字段));
 		+ 设置外键约束时，主表的字段必须是主键，table1是从表，table2是主表，主从表的字段类型要是一样
 
 		+ 练习：
-		+ ```create table typeinfo
-		(typeid varchar2(10) primary key,
-		 typename varchar2(20)
-		);```
+		+ ```
+			create table typeinfo
+			(typeid varchar2(10) primary key,
+			typename varchar2(20)
+			);
 
-		+ ```create table userinfo_f
-		(id varchar2(10) primary key,
-		 username varchar2(20),
-		 typeid_new varchar2(10) references typeinfo(typeid));```
+		+ ```
+			create table userinfo_f
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			typeid_new varchar2(10) references typeinfo(typeid));
+
 		+ userinfo_f从表创建的时候，设置外键约束，这个typeid_new和主表typeinfo的typeid关键外键，类型要一样
 		
 		+ ***在创建表时设置外键约束（第二种方法）***
-		+ ```constraint constraint_name foreign key(column_name) references
-		table_name(column_name) [on delete cascade]```
+		+ ```
+			constraint constraint_name foreign key(column_name) references
+			table_name(column_name) [on delete cascade]
+			
 		+ constraint关键字，外键名字constraint_name一般叫fk_xxx
 		+ [on delete cascade]是级联删除，如果主表中该条记录被删除，那么从表中使用了这条记录的值也会被删除
 
