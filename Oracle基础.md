@@ -262,9 +262,11 @@
 * ### 5 ***约束***
 	* ***非空约束***
 	+ ***在创建表时设置非空约束***
-	+ ```create table table_name(
+	+ ```
+		create table table_name(
 		column_name datatype not null,...
-	);```
+		);
+	```
 	+ PS:数据类型后面加上not null（非空约束）
 	+ 如果设置了非空约束，插入时插入为空就报错；要是没给他值，可以结合默认值
 
