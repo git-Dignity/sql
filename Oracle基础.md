@@ -357,23 +357,26 @@
 		+ ```
 			constraint constraint_name foreign key(column_name) references
 			table_name(column_name) [on delete cascade]
-			
+
 		+ constraint关键字，外键名字constraint_name一般叫fk_xxx
 		+ [on delete cascade]是级联删除，如果主表中该条记录被删除，那么从表中使用了这条记录的值也会被删除
 
 		+ ***根据第一种方法的例子继续***
-		+ ```create table userinfo_f1
-		(id varchar2(10) primary key,
-		 username varchar2(20),
-		 typeid_new varchar2(10),
-		 constraint fk_typeid_new foreign key(typeid_new) references typeinfo(typeid);```
+		+ ```
+			create table userinfo_f1
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			typeid_new varchar2(10),
+			constraint fk_typeid_new foreign key(typeid_new) references typeinfo(typeid);
 
 		+ 接下来介绍[on delete cascade]是 ***级别删除***
-		+ ```create table userinfo_f2
-		(id varchar2(10) primary key,
-		 username varchar2(20),
-		 typeid_new varchar2(10),
-		 constraint fk_typeid_new2 foreign key(typeid_new) references typeinfo(typeid) on delete cascade```
+		+ ```
+			create table userinfo_f2
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			typeid_new varchar2(10),
+			constraint fk_typeid_new2 foreign key(typeid_new) references typeinfo(typeid) on delete cascade
+
 		+ fk_typeid_new2这些外键约束的名字要唯一，主表删，从表对应的数据也会跟着删
 
 		+ 如：主表插入一行：insert into typeinfo values(1,1)	（注意这里插入的值是1）
@@ -408,22 +411,26 @@
 		+ 3）唯一约束在一张表中可以有多个，主键每张表中只有一个
 		
 		+ ***在创建表时设置唯一约束***：`create table table_name(column_name datatype unique,...)`
-		+ 如：```create table userinfo_u
-		(id varchar2(10) primary key,
-		 username varchar2(20) unique,
-		 userpwd varchar2(20)
-		);```
+		+ 如：```
+			create table userinfo_u
+			(id varchar2(10) primary key,
+			username varchar2(20) unique,
+			userpwd varchar2(20)
+			);
+
 		+ 所谓唯一约束就是在表中的字段是唯一的，但是可以为空；比如用户名一般都是唯一的
 		+ 是字段的值是唯一的，表中可以设置多个唯一约束
 		+ ***在创建表时设置唯一约束（第二种方法）***：`constraint constraint_name unique(column_name)`
 		+ 表级设置唯一约束，每一个唯一约束的名字都是唯一的
 		+ 假如有多个这样的，就写多个这条语句，不能写在unique()括号里面的，因为约束名字是唯一的
-		+ 如：```create table userinfo_u1
-		(id varchar2(10) primary key,
-		 username varchar2(20),
-		 userpwd varchar2(20),
-		 constraint un_username unique(username)
-		);```
+		+ 如：```
+			create table userinfo_u1
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			userpwd varchar2(20),
+			constraint un_username unique(username)
+			);
+
 		+ 表级设置唯一约束
 		+ ***在修改表时添加唯一约束***：`add constraint constraint_name unique(column_name);`
 		+ 一般命名唯一约束都是un_xxx
@@ -433,22 +440,26 @@
 
 		+ ***在创建表时设置检查约束***：`create table table_name (column_name datatype check(expressions),...)`
 		+ expressions[表达式，即约束条件]
-		+ 如：```create table userinfo_c
-		(id varchar2(10) primary key,
-		username varchar2(20),
-		salary number(6,0) check(salary>0));```
+		+ 如：```
+			create table userinfo_c
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			salary number(6,0) check(salary>0));
+
 		+ 在创建表设置检查约束，让工资salary大于0，check关键字
 		+ 插入数据：insert into userinfo_c values(1,'aaa',-50);
 		+ 这样就报错，因为salary要大于0，很明显-50小于0
 
 		+ ***在创建表时设置检查约束***：`constraint constraint_name check(expressions)`
 		+ 可以在列级设置，也可以在这里的表级设置，一般命名都是ck_xxx
-		+ 如：```create table userinfo_c1
-		(id varchar2(10) primary key,
-		username varchar2(20),
-		salary number(6,0),
-		constraint ck_salary check(salary>0) 
-		);```
+		+ 如：```
+			create table userinfo_c1
+			(id varchar2(10) primary key,
+			username varchar2(20),
+			salary number(6,0),
+			constraint ck_salary check(salary>0) 
+			);
+			
 		+ ck_salary约束名字，在表级设置检查约束
 		+ ***在修改表时添加检查约束***：`add constraint constraint_name check(expressions);`
 		+ 如：alter table userinfo_c3 add constraint ck_salary_new check(salary>0);
