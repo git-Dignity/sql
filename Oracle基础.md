@@ -440,11 +440,11 @@
 
 		+ ***在创建表时设置检查约束***：`create table table_name (column_name datatype check(expressions),...)`
 		+ expressions[表达式，即约束条件]
-		+ 如：```
-			create table userinfo_c
-			(id varchar2(10) primary key,
-			username varchar2(20),
-			salary number(6,0) check(salary>0));
+		+ ```
+				create table userinfo_c
+				(id varchar2(10) primary key,
+				username varchar2(20),
+				salary number(6,0) check(salary>0));
 
 		+ 在创建表设置检查约束，让工资salary大于0，check关键字
 		+ 插入数据：insert into userinfo_c values(1,'aaa',-50);
@@ -452,13 +452,13 @@
 
 		+ ***在创建表时设置检查约束***：`constraint constraint_name check(expressions)`
 		+ 可以在列级设置，也可以在这里的表级设置，一般命名都是ck_xxx
-		+ 如：```
-			create table userinfo_c1
-			(id varchar2(10) primary key,
-			username varchar2(20),
-			salary number(6,0),
-			constraint ck_salary check(salary>0) 
-			);
+		+ ```
+				create table userinfo_c1
+				(id varchar2(10) primary key,
+				username varchar2(20),
+				salary number(6,0),
+				constraint ck_salary check(salary>0) 
+				);
 
 		+ ck_salary约束名字，在表级设置检查约束
 		+ ***在修改表时添加检查约束***：`add constraint constraint_name check(expressions);`
