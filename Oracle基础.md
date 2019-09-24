@@ -260,24 +260,24 @@
 
 
 * ### 5 ***约束***
-	* 非空约束
-	+ 在创建表时设置非空约束
+	* ***非空约束***
+	+ ***在创建表时设置非空约束***
 	+ ```create table table_name(
 		column_name datatype not null,...
 	);```
 	+ PS:数据类型后面加上not null（非空约束）
 	+ 如果设置了非空约束，插入时插入为空就报错；要是没给他值，可以结合默认值
 
-	+ 在修改表时添加非空约束：alter table table_name modify column_name datatype not null;
-	+ 给已存在的表的字段添加非空约束：alter table userinfo modify username varchar2(20) not null;
+	+ ***在修改表时添加非空约束***：`alter table table_name modify column_name datatype not null;`
+	+ ***给已存在的表的字段添加非空约束***：`alter table userinfo modify username varchar2(20) not null;`
 	+ PS:有时候报错是因为：表中的数据有些是空的数据，所以要把他们先删了。
-	+ 在修改表时去除非空约束：alter table table_name modify column_name datatype null;
+	+ ***在修改表时去除非空约束***：`alter table table_name modify column_name datatype null;`
 	+ not null 改为 null，允许为空
 
-	* 主键约束
+	* ***主键约束***
 	+ 一张表只能设计一个主键约束；
 	+ 主键约束可以由多个字段构成（联合主键或复合主键）
-	+ 在创建表时设置主键约束：```create table table_name(
+	+ ***在创建表时设置主键约束***：```create table table_name(
 		column_name datatype primary key,...
 	)```
 
@@ -287,8 +287,8 @@
 	 userpwd varchar2(20)
 	);```
 	+ 为id添加主键约束，主键也是默认是非空not null
-	+ 在创建表时设置主键约束：constraint constraint_name primary key(column_name1,...)
-	+ 联合主键 constraint
+	+ ***在创建表时设置主键约束***：`constraint constraint_name primary key(column_name1,...)`
+	+ 联合主键 ***constraint***
 	+ 栗子：```create table userinfo_p1
 		(id number(6,0),
 		 username varchar2(20),
@@ -303,28 +303,28 @@
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/8.%E6%9F%A5%E6%89%BE%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.png"  height="380" width="795"> 
 		</div>
 
-	  + 查出表中的联合主键名字：select constraint_name,constraint_type from user_constraints where table_name = 'USERNAME_P1' 
+	  + ***查出表中的联合主键名字***：`select constraint_name,constraint_type from user_constraints where table_name = 'USERNAME_P1' `
 		+ constraint_name联合主键字段，constraint_type类型；table_name表名一定要大写
 		+ 如果表没有给他设置联合主键的话，就查找出默认的id主键，默认主键名字是系统给他起的（名字一般叫SYS_COO什么什么）
 
-		+ 在修改表时添加主键约束：add constraint constraint_name primary key(column_name1,...);
+		+ ***在修改表时添加主键约束***：`add constraint constraint_name primary key(column_name1,...);`
 		+ constraint_name主键的名字一般都是pk_xxx这样子的，primary key(column_name1)要设为主键的字段
-		+ 更改约束的名称：rename constraint old_name to new_name
-		+ 如：alter table userinfo rename constraint_pk_id to new_pk_id;
-		+ 禁用主键约束：alter table userinfo disable constraint new_pk_id;
-		+ 查看主键状态：select constraint_name,status from user_constraints where table_name = 'USERINFO';
-		+ alter table userinfo add constraint pk_id primary key(id);
+		+ ***更改约束的名称***：`rename constraint old_name to new_name`
+		+ 如：`alter table userinfo rename constraint_pk_id to new_pk_id;`
+		+ ***禁用主键约束***：`alter table userinfo disable constraint new_pk_id;`
+		+ ***查看主键状态***：`select constraint_name,status from user_constraints where table_name = 'USERINFO';`
+		+ `alter table userinfo add constraint pk_id primary key(id);`
 		+ 添加主键之前，表中的字段是为空的，唯一的
-		+ 删除主键约束： disable|enable constraint constraint_name
+		+ ***删除主键约束***： `disable|enable constraint constraint_name`
 		+ 禁用|启用 constraint约束关键字
 		+ 就比如我现在不想要主键约束，我就先禁用disable他，以后想要就enable启用他
-		+ 删除主键约束：drop constaint constraint_name 
+		+ ***删除主键约束***：`drop constaint constraint_name `
 		+ 注意drop的是constaint，其他都有个r,constraint
 		+ drop primary key[cascade]
 		+ 因为主键只有一个，所以可以不用写名字；[cascade]删除主键约束，可选项（外键用的），就是有外键引用他，也会将其外键的主键给删除
-		+ 删除表的主键：alter table userinfo_p drop primary key;
+		+ ***删除表的主键***：`alter table userinfo_p drop primary key;`
 
-		+ 在创建表时设置外键约束
+		+ ***在创建表时设置外键约束***
 		+ 从表中外键字段的值必须来自主表中的相应字段的值，或者为null值
 		+ ```create table table1
 		(column_name datatype references
@@ -346,25 +346,25 @@
 		 typeid_new varchar2(10) references typeinfo(typeid));```
 		+ userinfo_f从表创建的时候，设置外键约束，这个typeid_new和主表typeinfo的typeid关键外键，类型要一样
 		
-		+ 在创建表时设置外键约束（第二种方法）
-		+ constraint constraint_name foreign key(column_name) references
-		table_name(column_name) [on delete cascade]
+		+ ***在创建表时设置外键约束（第二种方法）***
+		+ ```constraint constraint_name foreign key(column_name) references
+		table_name(column_name) [on delete cascade]```
 		+ constraint关键字，外键名字constraint_name一般叫fk_xxx
 		+ [on delete cascade]是级联删除，如果主表中该条记录被删除，那么从表中使用了这条记录的值也会被删除
 
-		+ 根据第一种方法的例子继续
-		+ create table userinfo_f1
+		+ ***根据第一种方法的例子继续***
+		+ ```create table userinfo_f1
 		(id varchar2(10) primary key,
 		 username varchar2(20),
 		 typeid_new varchar2(10),
-		 constraint fk_typeid_new foreign key(typeid_new) references typeinfo(typeid);
+		 constraint fk_typeid_new foreign key(typeid_new) references typeinfo(typeid);```
 
-		+ 接下来介绍[on delete cascade]是级别删除
-		+ create table userinfo_f2
+		+ 接下来介绍[on delete cascade]是 ***级别删除***
+		+ ```create table userinfo_f2
 		(id varchar2(10) primary key,
 		 username varchar2(20),
 		 typeid_new varchar2(10),
-		 constraint fk_typeid_new2 foreign key(typeid_new) references typeinfo(typeid) on delete cascade
+		 constraint fk_typeid_new2 foreign key(typeid_new) references typeinfo(typeid) on delete cascade```
 		+ fk_typeid_new2这些外键约束的名字要唯一，主表删，从表对应的数据也会跟着删
 
 		+ 如：主表插入一行：insert into typeinfo values(1,1)	（注意这里插入的值是1）
@@ -376,12 +376,12 @@
 		+ 这样也是可以的，2或者null都可以
 		+ 总结：***从表的关联的外键必须和主表的值一样或者是null***
 
-		+ 在修改表时添加外键约束
-		+ add constraint constraint_name foreign key(column_name) references table_name(column_name)[on delete cascade]
-		+ 在已存在的表添加外键约束：alter table userinfo_f4 add constraint fk_typeid_alter foreign key(typeid_new)references typeinfo(typeid);
+		+ ***在修改表时添加外键约束***
+		+ `add constraint constraint_name foreign key(column_name) references table_name(column_name)[on delete cascade]`
+		+ ***在已存在的表添加外键约束***：`alter table userinfo_f4 add constraint fk_typeid_alter foreign key(typeid_new)references typeinfo(typeid);`
 		+ userinfo_f4的typeid_new和另外的typeinfo表的typeid关联外键约束
 		+ 当然后面也可以设置级别删除
-		+ 删除外键约束：disable | enable constraint constraint_name
+		+ ***删除外键约束***：`disable | enable constraint constraint_name`
 		+ 禁用 | 启用 外键
 		+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/9.%20%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E7%A6%81%E7%94%A8%E5%90%AF%E7%94%A8.png"  height="380" width="795"> 
@@ -389,16 +389,16 @@
 		
 		+ user_constraints可以查表的主键外键约束名字、是否禁用
 		+ 要是不知道表的约束是否为启用，可查看user_constraints数据字典
-		+ 删除外键约束：drop constraint constraint_name;
+		+ ***删除外键约束***：`drop constraint constraint_name;`
 		+ 彻底删除外键约束，前面加alter table 表名字 + 
 
-		* 唯一约束
+		* ***唯一约束***
 		+ 唯一约束和主键约束的区别：
 		+ 1）主键字段必须是非空的，唯一约束允许有一个空值
 		+ 2）唯一约束和主键约束都是保证字段值的唯一性
 		+ 3）唯一约束在一张表中可以有多个，主键每张表中只有一个
 		
-		+ 在创建表时设置唯一约束：create table table_name(column_name datatype unique,...)
+		+ ***在创建表时设置唯一约束***：`create table table_name(column_name datatype unique,...)`
 		+ 如：```create table userinfo_u
 		(id varchar2(10) primary key,
 		 username varchar2(20) unique,
@@ -406,7 +406,7 @@
 		);```
 		+ 所谓唯一约束就是在表中的字段是唯一的，但是可以为空；比如用户名一般都是唯一的
 		+ 是字段的值是唯一的，表中可以设置多个唯一约束
-		+ 在创建表时设置唯一约束（第二种方法）：constraint constraint_name unique(column_name)
+		+ ***在创建表时设置唯一约束（第二种方法）***：`constraint constraint_name unique(column_name)`
 		+ 表级设置唯一约束，每一个唯一约束的名字都是唯一的
 		+ 假如有多个这样的，就写多个这条语句，不能写在unique()括号里面的，因为约束名字是唯一的
 		+ 如：```create table userinfo_u1
@@ -416,13 +416,13 @@
 		 constraint un_username unique(username)
 		);```
 		+ 表级设置唯一约束
-		+ 在修改表时添加唯一约束：add constraint constraint_name unique(column_name);
+		+ ***在修改表时添加唯一约束***：`add constraint constraint_name unique(column_name);`
 		+ 一般命名唯一约束都是un_xxx
-		+ 删除唯一约束：disable|enable constraint constraint_name
+		+ ***删除唯一约束***：`disable|enable constraint constraint_name`
 		+ u:唯一约束、p：主键、r：外键、c：检查约束
-		+ 删除唯一约束：drop constraint constraint_name
+		+ ***删除唯一约束***：`drop constraint constraint_name`
 
-		+ 在创建表时设置检查约束：create table table_name (column_name datatype check(expressions),...)
+		+ ***在创建表时设置检查约束***：`create table table_name (column_name datatype check(expressions),...)`
 		+ expressions[表达式，即约束条件]
 		+ 如：```create table userinfo_c
 		(id varchar2(10) primary key,
@@ -432,7 +432,7 @@
 		+ 插入数据：insert into userinfo_c values(1,'aaa',-50);
 		+ 这样就报错，因为salary要大于0，很明显-50小于0
 
-		+ 在创建表时设置检查约束：constraint constraint_name check(expressions)
+		+ ***在创建表时设置检查约束***：`constraint constraint_name check(expressions)`
 		+ 可以在列级设置，也可以在这里的表级设置，一般命名都是ck_xxx
 		+ 如：```create table userinfo_c1
 		(id varchar2(10) primary key,
@@ -441,11 +441,11 @@
 		constraint ck_salary check(salary>0) 
 		);```
 		+ ck_salary约束名字，在表级设置检查约束
-		+ 在修改表时添加检查约束：add constraint constraint_name check(expressions);
+		+ ***在修改表时添加检查约束***：`add constraint constraint_name check(expressions);`
 		+ 如：alter table userinfo_c3 add constraint ck_salary_new check(salary>0);
 		+ 在已存在的表中添加检查约束
-		+ 删除检查约束：disable | enable constraint constraint_name
-		+ 删除检查约束：drop constraint constraint_name 
+		+ ***删除检查约束***：disable | enable constraint constraint_name
+		+ ***删除检查约束***：drop constraint constraint_name 
 
 		+ 总结：非空约束、主键约束、外键约束、唯一约束、检查约束
 		+ 1.五个中就主键约束是要求唯一的，而且可以由多个字段组成，也就是表级约束可以多个字段写在一起
@@ -479,19 +479,19 @@
 		+	唯一约束在一张表中可以有多个，主键每张表中只能有一个；
 		+	设置列级唯一约束：
 		+ 
-		+ 怎么更改check约束：alter table emp1 add constraint ch_sal check(sal>500);怎么更改呀？想变成sal>400
-		+ 回答：alter table emp1 modify constraint ch_sal check(sal>400);
+		+ 怎么更改check约束：`alter table emp1 add constraint ch_sal check(sal>500);`怎么更改呀？想变成sal>400
+		+ 回答：`alter table emp1 modify constraint ch_sal check(sal>400);`
 		+ 修改表时添加检查约束：ADD CONSTRAIN constraint_name CHECK(expressions);
 
 		+ 非空约束和默认值约束只能在列级设置，不能在表级设置；非空约束一般而言我们是针对某一列进行约束所以只能进行列级约束
 		+ 在修改表的结构的时候修改非空约束和默认值约束，用的是修改字段的语句（MODIFY）。
 
-		+ 总结：
-		+ 非空约束 NOT NUL （禁止插入字段为空）
-		+	主键约束 PRIMARY KEY （每张表只能有一个，可以由多个字段构成）
-		+	外键约束 FOREIGN KEY （约束字段与外表字段匹配，类型相同，数据必须 IN {外表数据}）
-		+	唯一约束 UNIQUE （保证数据的唯一性，可以由多字段构成） 
-		+	检查约束 CHECK （保证数据值的安全可靠，并允许范围内）
+		+ ***总结：***
+		+ 非空约束 ***NOT NUL*** （禁止插入字段为空）
+		+	主键约束 ***PRIMARY KEY*** （每张表只能有一个，可以由多个字段构成）
+		+	外键约束 ***FOREIGN KEY*** （约束字段与外表字段匹配，类型相同，数据必须 IN {外表数据}）
+		+	唯一约束 ***UNIQUE*** （保证数据的唯一性，可以由多字段构成） 
+		+	检查约束 ***CHECK*** （保证数据值的安全可靠，并允许范围内）
 
 
 
