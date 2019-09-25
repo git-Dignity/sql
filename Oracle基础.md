@@ -520,7 +520,20 @@
 		+ PS:distinct是去重的意思（要是有两条一样的记录，则只显示一条）
 		+ 在sql*plus中设置格式：COLUMN column_name HEADING new _name
 		+ 注意：COLUMN可以简写成COL
-		
+		+ ***更改字段名字***：`col username heading 用户名`
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/11.%E5%9C%A8sqlplus%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%A0%BC%E5%BC%8F.png"  height="380" width="795"> 
+		</div>
+
+		+ 字符类型只能设置显示的长度（设置结果显示的格式）：COLUMN column_name FORMAT dataformat
+		+ 设置999.9三位，如果超出范围则用#表示：col salary format 999.9;
+		+ PS:数值类型是用9表示一位，这里是999.9，表示可用最长是3位数和一个小数点一位，超出用#表示
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/11.%E5%9C%A8sqlplus%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%A0%BC%E5%BC%8F.png"  height="380" width="795"> 
+		</div>
+
+		+ 
+
 
 
 
