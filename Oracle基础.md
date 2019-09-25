@@ -529,10 +529,14 @@
 		+ 设置999.9三位，如果超出范围则用#表示：col salary format 999.9;
 		+ PS:数值类型是用9表示一位，这里是999.9，表示可用最长是3位数和一个小数点一位，超出用#表示
 		+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/11.%E5%9C%A8sqlplus%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%A0%BC%E5%BC%8F.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/12.%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B%E5%8F%AA%E8%83%BD%E8%AE%BE%E7%BD%AE%E6%98%BE%E7%A4%BA%E7%9A%84%E9%95%BF%E5%BA%A6.png"  height="380" width="795"> 
 		</div>
 
-		+ 
+		+ salary的值前面都加上$符号（显示格式）：`col salary format $9999.9`
+		+ 清除格式：COLUMN column_name(字段名字) CLEAR
+		+ 清除salary之前设置的格式：col salary clear;
+		+ 给字段设置别名（对查询结果进行设置别名）：select column_name as new_name,... from table_name;
+		+ 注意：AS可以省略，用空格隔开原来的字段名和新名字即可
 
 
 
