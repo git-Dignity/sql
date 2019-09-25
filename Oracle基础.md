@@ -514,8 +514,13 @@
 		+	检查约束 ***CHECK*** （保证数据值的安全可靠，并允许范围内）
 
 
-
-		+ 查询
+		* ***6、查询***
+		+ 给字段设置别名：给字段设置别名是针对查询结果进行的，并没有更改字段的名字
+		+ 基本查询语句：`select [distinct] column_name1,...|* from table_name [where conditions]`
+		+ PS:distinct是去重的意思（要是有两条一样的记录，则只显示一条）
+		+ 在sql*plus中设置格式：COLUMN column_name HEADING new _name
+		+ 注意：COLUMN可以简写成COL
+		
 
 
 
