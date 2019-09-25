@@ -519,7 +519,7 @@
 		+ 基本查询语句：`select [distinct] column_name1,...|* from table_name [where conditions]`
 		+ PS:distinct是去重的意思（要是有两条一样的记录，则只显示一条）
 		+ 在sql*plus中设置格式：COLUMN column_name HEADING new _name
-		+ 注意：COLUMN可以简写成COL
+		+ 注意：COLUMN可以简写成COL，更改名字 设置名字的  只是在sql/plus里面有作用而已
 		+ ***更改字段名字***：`col username heading 用户名`
 		+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/11.%E5%9C%A8sqlplus%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%A0%BC%E5%BC%8F.png"  height="380" width="795"> 
@@ -566,15 +566,41 @@
 		+ 对查询结果排序：select ... from ... [where ...] order by column1 desc/asc,...
 		+ desc降序，asc升序
 		+ 按id降序：select * from user order by id desc;
+		+ 这个栗子可以好好理解一下，如果desc和asc同时出现，先进行第一个desc，当行的数据相等，才会做比较轮到asc
 		+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/13.%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/14.%E5%8D%87%E5%BA%8F%E9%99%8D%E5%BA%8F.png"  height="380" width="795"> 
 		</div>
 
 		+ <div align="center">
-		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/13.%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F.png"  height="380" width="795"> 
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/15.%E5%8D%87%E5%BA%8F%E9%99%8D%E5%BA%8F1.png"  height="380" width="795"> 
 		</div>
 
-		+ 
+		+ case...when语句的使用，放在select中
+		+ case column_name when value1 then result1,...[else result] end
+		+ 如果column_name = value1的时候，就执行then result1，当然可以有多个result1，如果满足不了就走else result ,end结束
+		+ 栗子：select username,case username when 'aaa' then '计算机' 
+			when 'bbb' then '市场' else '其他' end as 部门 from user;
+		
+		+ case...when语句的使用（另一种写法）（***推荐，比较灵活***）
+		+ case when column_name = value1 then result1,...[else result] end 
+		+ 栗子：select username,case username='aaa' then '计算机' 
+			when username='bbb' then '市场' else '其他' end as 部门 from user;
+		+ 其实就是when后面是一个表达式
+
+		+ decode函数的使用
+		+ 对字段进行条件的判断：descode(column_name,value1,result1,...,defaultvalue)
+		+ 栗子：select username,decode(username,'aaa','计算机','bbb','市场','其他') as 部门 from user;
+		+ 函数decode，都不满足就其他
+
+		+ 课程总结
+		+ 用户与表空间
+		+ 如何查看登录用户：show user命令，dba_users数据字典
+		+ 启用scott用户：alter user scott account unlock;
+		+ 如何查看某个用户的默认表空间和临时表空间
+		+ 表空间的管理：增删改查表空间
+		+ 表与约束：非空约束、主键约束、外键约束、唯一约束、检查约束
+
+
 
 
 
