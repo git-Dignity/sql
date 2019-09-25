@@ -538,6 +538,46 @@
 		+ 给字段设置别名（对查询结果进行设置别名）：select column_name as new_name,... from table_name;
 		+ 注意：AS可以省略，用空格隔开原来的字段名和新名字即可
 
+		+ 运算符和表达式
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/13.%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F.png"  height="380" width="795"> 
+		</div>
+
+		+ not(9<5)   true
+		+ 运算符只对查询结果做处理，实际上表中是不会发生变化的
+		+ '>' '<'号，一般应用在where后面
+		+ select username from user where salary>800 and salary<>1880.5
+		+ and且，<>是不等于的意思
+		+ 栗子：select * from user where username = "aaa" or (salary>800 and salary<=2000);
+		+ 查询名字是aaa，或者工资在800到2000之间的员工信息，后面要括号括起来，不然和括号外面的冲突的
+		+ 如果没有括号会是怎样？select * from user where username = "aaa" or salary>800 and salary<=2000;
+		+ ***and运算符比or高，所以后面那个and，其实暗中加上小括号了***
+		+ ***逻辑运算符的优先级：按not、and、or的顺序依次递减***
+		+ ***先计算+-/，在计算那些or、and、not，比较运算符的优先级高于逻辑运算符***
+
+		+ 模糊搜索
+		+ 通配符的使用（_,%）	一个_只能代表一个字符，%可以代表0到多个任意字符
+		+ 使用like查询
+		+ 栗子：查询用户名是第二个字符是a的用户信息：`select username from user where like '_a%'`;
+		+ 范围查询：between...and
+		+ 从小范围到大范围，between小范围(a<50)，and大范围（b>50）
+		+ 不在800-2000的范围：select * from user where salary not between 800 and 2000;
+		+ 查询用户名是aaa或者是bbb的用户信息：select * from user where username in('aaa','bbb');
+		+ 对查询结果排序：select ... from ... [where ...] order by column1 desc/asc,...
+		+ desc降序，asc升序
+		+ 按id降序：select * from user order by id desc;
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/13.%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F.png"  height="380" width="795"> 
+		</div>
+
+		+ <div align="center">
+		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/13.%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F.png"  height="380" width="795"> 
+		</div>
+
+		+ 
+
+
+
 
 
 
