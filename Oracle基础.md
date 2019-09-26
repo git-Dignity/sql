@@ -515,17 +515,17 @@
 
 
 		* ***6、查询***
-		+ 给字段设置别名：给字段设置别名是针对查询结果进行的，并没有更改字段的名字
+		+ ***给字段设置别名***：给字段设置别名是针对查询结果进行的，并没有更改字段的名字
 		+ 基本查询语句：`select [distinct] column_name1,...|* from table_name [where conditions]`
-		+ PS:distinct是去重的意思（要是有两条一样的记录，则只显示一条）
-		+ 在sql*plus中设置格式：COLUMN column_name HEADING new _name
+		+ PS:***distinct是去重的意思***（要是有两条一样的记录，则只显示一条）
+		+ ***在sql*plus中设置格式***：`COLUMN column_name HEADING new _name`
 		+ 注意：COLUMN可以简写成COL，更改名字 设置名字的  只是在sql/plus里面有作用而已
 		+ ***更改字段名字***：`col username heading 用户名`
 		+ <div align="center">
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/11.%E5%9C%A8sqlplus%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%A0%BC%E5%BC%8F.png"  height="380" width="795"> 
 		</div>
 
-		+ 字符类型只能设置显示的长度（设置结果显示的格式）：COLUMN column_name FORMAT dataformat
+		+ ***字符类型只能设置显示的长度（设置结果显示的格式）***：`COLUMN column_name FORMAT dataformat`
 		+ 设置999.9三位，如果超出范围则用#表示：col salary format 999.9;
 		+ PS:数值类型是用9表示一位，这里是999.9，表示可用最长是3位数和一个小数点一位，超出用#表示
 		+ <div align="center">
@@ -533,7 +533,7 @@
 		</div>
 
 		+ salary的值前面都加上$符号（显示格式）：`col salary format $9999.9`
-		+ 清除格式：COLUMN column_name(字段名字) CLEAR
+		+ ***清除格式***：`COLUMN column_name(字段名字) CLEAR`
 		+ 清除salary之前设置的格式：col salary clear;
 		+ 给字段设置别名（对查询结果进行设置别名）：select column_name as new_name,... from table_name;
 		+ 注意：AS可以省略，用空格隔开原来的字段名和新名字即可
@@ -546,25 +546,25 @@
 		+ not(9<5)   true
 		+ 运算符只对查询结果做处理，实际上表中是不会发生变化的
 		+ '>' '<'号，一般应用在where后面
-		+ select username from user where salary>800 and salary<>1880.5
+		+ `select username from user where salary>800 and salary<>1880.5`
 		+ and且，<>是不等于的意思
-		+ 栗子：select * from user where username = "aaa" or (salary>800 and salary<=2000);
+		+ 栗子：`select * from user where username = "aaa" or (salary>800 and salary<=2000);`
 		+ 查询名字是aaa，或者工资在800到2000之间的员工信息，后面要括号括起来，不然和括号外面的冲突的
-		+ 如果没有括号会是怎样？select * from user where username = "aaa" or salary>800 and salary<=2000;
+		+ 如果没有括号会是怎样？`select * from user where username = "aaa" or salary>800 and salary<=2000;`
 		+ ***and运算符比or高，所以后面那个and，其实暗中加上小括号了***
 		+ ***逻辑运算符的优先级：按not、and、or的顺序依次递减***
 		+ ***先计算+-/，在计算那些or、and、not，比较运算符的优先级高于逻辑运算符***
 
-		+ 模糊搜索
+		+ ***模糊搜索***
 		+ 通配符的使用（_,%）	一个_只能代表一个字符，%可以代表0到多个任意字符
-		+ 使用like查询
+		+ 使用***like***查询
 		+ 栗子：查询用户名是第二个字符是a的用户信息：`select username from user where like '_a%'`;
-		+ 范围查询：between...and
+		+ ***范围查询：between...and***
 		+ 从小范围到大范围，between小范围(a<50)，and大范围（b>50）
-		+ 不在800-2000的范围：select * from user where salary not between 800 and 2000;
-		+ 查询用户名是aaa或者是bbb的用户信息：select * from user where username in('aaa','bbb');
-		+ 对查询结果排序：select ... from ... [where ...] order by column1 desc/asc,...
-		+ desc降序，asc升序
+		+ 不在800-2000的范围：`select * from user where salary not between 800 and 2000;`
+		+ 查询用户名是aaa或者是bbb的用户信息：`select * from user where username in('aaa','bbb');`
+		+ 对查询结果排序：`select ... from ... [where ...] order by column1 desc/asc,...`
+		+ ***desc降序，asc升序***
 		+ 按id降序：select * from user order by id desc;
 		+ 这个栗子可以好好理解一下，如果desc和asc同时出现，先进行第一个desc，当行的数据相等，才会做比较轮到asc
 		+ <div align="center">
@@ -575,31 +575,53 @@
 		<img src="https://raw.githubusercontent.com/git-Dignity/sql/master/img/15.%E5%8D%87%E5%BA%8F%E9%99%8D%E5%BA%8F1.png"  height="380" width="795"> 
 		</div>
 
-		+ case...when语句的使用，放在select中
-		+ case column_name when value1 then result1,...[else result] end
+		+ ***case...when语句的使用***，放在select中
+		+ `case column_name when value1 then result1,...[else result] end`
 		+ 如果column_name = value1的时候，就执行then result1，当然可以有多个result1，如果满足不了就走else result ,end结束
-		+ 栗子：select username,case username when 'aaa' then '计算机' 
+		+ 栗子：
+		+ ```
+			select username,case username when 'aaa' then '计算机' 
 			when 'bbb' then '市场' else '其他' end as 部门 from user;
 		
 		+ case...when语句的使用（另一种写法）（***推荐，比较灵活***）
-		+ case when column_name = value1 then result1,...[else result] end 
-		+ 栗子：select username,case username='aaa' then '计算机' 
+		+ `case when column_name = value1 then result1,...[else result] end `
+		+ 栗子：
+		+ ```
+			select username,case username='aaa' then '计算机' 
 			when username='bbb' then '市场' else '其他' end as 部门 from user;
+			
 		+ 其实就是when后面是一个表达式
 
-		+ decode函数的使用
-		+ 对字段进行条件的判断：descode(column_name,value1,result1,...,defaultvalue)
-		+ 栗子：select username,decode(username,'aaa','计算机','bbb','市场','其他') as 部门 from user;
+		+ ***decode函数的使用***
+		+ 对字段进行条件的判断：`descode(column_name,value1,result1,...,defaultvalue)`
+		+ 栗子：`select username,decode(username,'aaa','计算机','bbb','市场','其他') as 部门 from user;`
 		+ 函数decode，都不满足就其他
 
 		+ 课程总结
 		+ 用户与表空间
-		+ 如何查看登录用户：show user命令，dba_users数据字典
-		+ 启用scott用户：alter user scott account unlock;
+		+ ***如何查看登录用户***：show user命令，dba_users数据字典
+		+ ***启用scott用户***：`alter user scott account unlock;`
 		+ 如何查看某个用户的默认表空间和临时表空间
 		+ 表空间的管理：增删改查表空间
 		+ 表与约束：非空约束、主键约束、外键约束、唯一约束、检查约束
 
+		+ plsql 每次操作玩数据库都要***commit事务提交***，不然会导致数据不同步
+		+ 关于***四舍五入***：输入值1000.5 查询时显示1001.0 怎么调整
+		+	PS:`SELECT ROUND( 1000.5, [ 1 ] ) FROM DUAL;`
+		+ ***SELECT ROUND( number, [ decimal_places ] ) FROM DUAL***
+		+	说明：number : 将要处理的数值；decimal_places : 四舍五入，小数取几位,不填默认为0
+
+		+ 表空间、文件、表之间关系？
+		+ 数据库比如是一个柜子，柜中的抽屉是表空间，抽屉中的文件夹是数据文件，文件夹中的纸是表，写在纸上的信息就是数据 表空间可以有多个数据文件，但是一个数据文件必须属于一个表空间。表和表空间来说，表空间就是表存储的地方，表是表空间一种表现形式。
+
+
+		END=========================================END
+
+
+
+
+
+	
 
 
 
